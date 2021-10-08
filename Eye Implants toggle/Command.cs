@@ -1,36 +1,25 @@
-﻿using PulsarPluginLoader.Chat.Commands;
+﻿using PulsarModLoader.Chat.Commands.CommandRouter;
 
 namespace Eye_Implants_toggle
 {
-    class Command : IChatCommand
+    class Command : ChatCommand
     {
         public static bool CurrentSetting = true;
-        public string[] CommandAliases()
+        public override string[] CommandAliases()
         {
             return new string[] { "implants", "eyes" };
         }
 
-        public string Description()
+        public override string Description()
         {
             return "Toggles Eye Implants on/off";
         }
 
-        public bool Execute(string arguments, int SenderID)
+        public override void Execute(string arguments)
         {
             CurrentSetting = !CurrentSetting;
             string str = CurrentSetting ? "On" : "Off";
-            PulsarPluginLoader.Utilities.Messaging.Notification($"Eye implants now {str}");
-            return false;
-        }
-
-        public bool PublicCommand()
-        {
-            return false;
-        }
-
-        public string UsageExample()
-        {
-            return $"/{CommandAliases()[0]}";
+            PulsarModLoader.Utilities.Messaging.Notification($"Eye implants now {str}");
         }
     }
 }
