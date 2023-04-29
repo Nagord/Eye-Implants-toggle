@@ -4,9 +4,19 @@ namespace Eye_Implants_toggle
 {
     class GUI : PulsarModLoader.CustomGUI.ModSettingsMenu
     {
+        bool cached;
+        public override void OnOpen()
+        {
+            cached = Mod.Enabled;
+        }
         public override void Draw()
         {
-            Command.CurrentSetting = Toggle(Command.CurrentSetting, "Toggle Eye Implants On/Off");
+            cached = Toggle(cached, "Toggle Eye Implants On/Off");
+
+            if (cached != Mod.Enabled)
+            {
+                Mod.Enabled.Value = cached;
+            }
         }
 
         public override string Name()

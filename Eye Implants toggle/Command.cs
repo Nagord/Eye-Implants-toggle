@@ -4,7 +4,6 @@ namespace Eye_Implants_toggle
 {
     class Command : ChatCommand
     {
-        public static bool CurrentSetting = true;
         public override string[] CommandAliases()
         {
             return new string[] { "implants", "eyes" };
@@ -17,8 +16,8 @@ namespace Eye_Implants_toggle
 
         public override void Execute(string arguments)
         {
-            CurrentSetting = !CurrentSetting;
-            string str = CurrentSetting ? "On" : "Off";
+            Mod.Enabled.Value = !Mod.Enabled.Value;
+            string str = Mod.Enabled.Value ? "On" : "Off";
             PulsarModLoader.Utilities.Messaging.Notification($"Eye implants now {str}");
         }
     }
